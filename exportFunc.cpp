@@ -1,4 +1,4 @@
-#include "Triesite.h"
+include "Triesite.h"
 
 extern "C"
 {
@@ -47,13 +47,9 @@ extern "C"
 	}
 
 	// for create Triesite cpp object pointer
-	__declspec(dllexport) Triesite* makeTriesiteObjectDefault()
+	__declspec(dllexport) Triesite* makeTriesiteObject()
 	{
 		return new Triesite();
-	}
-	__declspec(dllexport) Triesite* makeTriesiteObject(char* siteName, char x, char y = 'q')
-	{
-		return new Triesite(siteName, x, y);
 	}
 	__declspec(dllexport) void deleteTriesiteObject(Triesite*& ThisPointer)
 	{
@@ -104,10 +100,10 @@ extern "C"
 			throw ex;
 		}
 	}
-	__declspec(dllexport) void PutStopFlSite(Triesite* thisPointer, char* stopeName) {
+	__declspec(dllexport) void PutStopFlSite(Triesite* thisPointer, char* stopeName){
 		try
 		{
-			thisPointer->putstopfl(stopeName);
+			thisPointer->putstopf(stopeName);
 		}
 		catch (exception ex)
 		{
@@ -141,7 +137,7 @@ extern "C"
 			throw ex;
 		}
 	}
-	__declspec(dllexport) void DelDocOfSite(Triesite* thisPointer, char* docName, char lORp) {
+	__declspec(dllexport) void DelDocOfSite(Triesite* thisPointer, char* docName, char lORp){
 		try
 		{
 			thisPointer->docdel(docName, lORp);
@@ -152,7 +148,7 @@ extern "C"
 			throw ex;
 		}
 	}
-	__declspec(dllexport) void DelSite(Triesite* thisPointer, char lORp) {
+	__declspec(dllexport) void DelSite(Triesite* thisPointer, char lORp){
 		try
 		{
 			thisPointer->del(lORp);
@@ -163,7 +159,7 @@ extern "C"
 			throw ex;
 		}
 	}
-
+		
 	//step 3
 	__declspec(dllexport) StringArray& GetDocNameList(Triesite* thisPointer, StringArray& stringArray, int code)
 	{
@@ -180,7 +176,7 @@ extern "C"
 			throw ex;
 		}
 	}
-	__declspec(dllexport) void DocIdxSite(Triesite* thisPointer, char* docName) {
+	__declspec(dllexport) void DocIdxSite(Triesite* thisPointer, char* docName){
 		try
 		{
 			thisPointer->docidx(docName);
@@ -191,7 +187,7 @@ extern "C"
 			throw ex;
 		}
 	}
-
+	
 	//step 4
 	__declspec(dllexport) char*& ExpSearchSite(Triesite* thisPointer, char*& result, char* docName, char* expressionSearch)
 	{
@@ -240,18 +236,6 @@ extern "C"
 			throw ex;
 		}
 	}
-	//__declspec(dllexport) int GetNumSearches(Triesite* thisPointer, char* docName)
-	//{
-	//	try
-	//	{
-	//		return thisPointer->getnumofsearches(docName);
-	//	}
-	//	catch (exception ex)
-	//	{
-	//		thisPointer->SetLastErrorMessage(ex.what());
-	//		throw ex;
-	//	}
-	//}
 
 }
 
